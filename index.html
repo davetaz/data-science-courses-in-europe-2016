@@ -1,0 +1,99 @@
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11,r-2.0.2/datatables.min.js"></script>
+<script type='text/javascript' src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script type='text/javascript' src="//cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script type='text/javascript' src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script type='text/javascript' src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script type='text/javascript' src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script type='text/javascript' src="//cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script type='text/javascript' src="//cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.11,r-2.0.2/datatables.min.css"/>
+<table id="learners" class="display" cellspacing="0" width="100%" style="display: none;">
+	<thead>
+            <tr>
+                <th>Type of course</th>
+                <th>Course Title</th>
+                <th class="none">Course link</th>
+                <th>Course Provider</th>
+                <th>Country</th>
+                <th>Length of course</th>
+                <th>Study mode (FT, PT, Flexible),</th>
+                <th class="none">Higher Education/Professional Development</th>
+                <th class="none">Primary location (City, Online, Blended)</th>
+                <th class="none">Language</th>
+                <th class="none">Qualification or accreditation</th>
+                <th class="none">Department(s), Faculty</th>
+                <th class="none">Core modules/units/course content</th>
+                <th class="none">Additional modules/units,</th>
+                <th class="none">Techniques, tools, programming languages,</th>
+                <th class="none">Placement</th>
+                <th class="none">Total cost EU (starting 2016)</th>
+                <th class="none">Cost non-EU (starting 2016)</th>
+                <th class="none">Subsidised Learning</th>
+                <th class="none">Target audience</th>
+                <th class="none">Listed, searchable?</th>
+                <th class="none">search term, tag</th>
+                <th class="none">Entry requirements?</th>
+                <th class="none">Frequency of course</th>
+                <th class="none">Start date/time</th>
+                <th class="none">Year established</th>
+                <th class="none">Industry partners</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+</table>
+
+<script>
+/*
+TODO: Convert this to use more of the courses data and provide links.
+*/
+$(document).ready(function() {
+  d3.csv("dse.csv", function( error, data ) {
+    var table = $('#learners').DataTable({
+		"responsive": true,
+        "data": data,
+
+		"columns": [
+            { "data" : "Type of course" },
+            { "data" : "Course Title" },
+            { "data" : "Course link" },
+            { "data" : "Course Provider" },
+            { "data" : "Country" },
+            { "data" : "Length of course" },
+            { "data" : "Study mode (FT, PT, Flexible)," },
+            { "data" : "Higher Education/Professional Development" },
+            { "data" : "Primary location (City, Online, Blended)" },
+            { "data" : "Language" },
+            { "data" : "Qualification or accreditation" },
+            { "data" : "Department(s), Faculty" },
+            { "data" : "Core modules/units/course content" },
+            { "data" : "Additional modules/units," },
+            { "data" : "Techniques, tools, programming languages," },
+            { "data" : "Placement" },
+            { "data" : "Total cost EU (starting 2016)" },
+            { "data" : "Cost non-EU (starting 2016)" },
+            { "data" : "Subsidised Learning" },
+            { "data" : "Target audience" },
+            { "data" : "Listed, searchable?" },
+            { "data" : "search term, tag" },
+            { "data" : "Entry requirements?" },
+            { "data" : "Frequency of course" },
+            { "data" : "Start date/time" },
+            { "data" : "Year established" },
+            { "data" : "Industry partners" }
+	   ],
+	   "pageLength": 50,
+	   "order": [[ 5, "desc" ], [0, "asc"]],
+       "dom": 'Bfrtip',
+       "buttons": [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+       ]
+	});
+	$('#learners').fadeIn("slow");
+  });
+});
+</script>
